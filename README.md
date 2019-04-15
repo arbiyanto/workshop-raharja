@@ -2,4 +2,4 @@
 
 Hello everyone, this is a simple project that made by me for "Create your future startup with web programming" workshop at STMIK Raharja. Feel free to use this project for your own.
 
-![Mockup with Sketch App](https://github.com/arbiyanto/workshop-raharja/assets/mockup/Home.png)
+![Mockup with Sketch App](https://github.com/arbiyanto/workshop-raharja/blob/master/assets/mockup/Home.png)
