@@ -1,0 +1,236 @@
+/**
+ * CSS Reset
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: helvetica;
+    font-weight: 300;
+    color: #3A3A3A;
+}
+
+a {
+    color: #74A3DA;
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(89, 129, 175);
+}
+
+/**
+ * Container
+ */
+.container {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: auto !important;
+        margin-left: 1em !important;
+        margin-right: 1em !important;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 723px;
+    }
+}
+
+/* Small Monitor */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        width: 933px;
+    }
+}
+
+/* Large Monitor */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 1167px;
+    }
+}
+
+/**
+ * Helper
+ */
+@media only screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+/**
+ * Navigation Component
+ */
+
+#navigation {
+    width: 100%;
+    position: relative;
+}
+
+#navigation .container {
+    display: flex;
+    align-items: center;
+}
+
+#navigation .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #3A3A3A;
+    padding: 15px 10px;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.313em;
+    transition: border 0.3s ease-out;
+}
+
+#navigation .item:not(.logo):hover {
+    border-color: #333;
+}
+
+#navigation .logo {
+    position: absolute;
+    left: 50%;
+    margin-left: -63px;
+}
+
+#navigation .logo span {
+    font-weight: 700;
+}
+
+#navigation .right-menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    #navigation .item {
+        font-size: 1em;
+    }
+}
+
+/**
+ * Buttons
+ */
+
+.button {
+    text-decoration: none;
+    font-weight: bold;
+    color: #3A3A3A;
+    padding: 10px 21px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    text-align: center;
+    font-size: 1em;
+    position: relative;
+    cursor: pointer;
+}
+
+.button.green {
+    color: #fff;
+    background-color: #47B631;
+    transition: background 0.2s ease-out;
+}
+
+.button.big {
+    font-size: 1.75em;
+    padding: 15px 40px;
+}
+
+.button.secondary {
+    border: 1px solid #DADADA;
+    background: #fff;
+    font-weight: 300;
+}
+
+.button.green:hover {
+    background-color: rgb(62, 133, 46);
+}
+
+@media only screen and (max-width: 768px) {
+    .button.big {
+        font-size: 1.3em;
+        padding: 10px 20px;
+    }
+}
+
+/**
+ * Form
+ */
+
+form, .field {
+    max-width: 100%;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.field label, .field input{
+    display: block;
+}
+
+.field label {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: rgb(85, 85, 85);
+}
+
+.field input, .field textarea {
+    width: 100%;
+    border: 1px solid #DFDFDF;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 15px;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+}
+
+.filedrop {
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100% !important;
+    left: 0;
+    top: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.margin-large-top {
+    margin-top: 35px;
+}
+
+/**
+ * Footer
+ */
+#footer {
+    text-align: center;
+    padding-top: 55px;
+    padding-bottom: 35px;
+}
+#footer .copyright {
+    color: rgb(107, 107, 107);
+}
