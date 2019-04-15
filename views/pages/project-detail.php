@@ -1,16 +1,37 @@
 <?php
 $id = isset($_GET['project_id']) ? $_GET['project_id'] : null;
 $detail = null;
+$success = false;
 
 if ($id != null || $id == '') {
     $detail = runQuery(
-        "SELECT projects.*, users.username, (SELECT COUNT(donation) FROM backers WHERE project_id=projects.id) donation,
+        "SELECT projects.*, users.username, (SELECT SUM(donation) FROM backers WHERE project_id=projects.id) donation,
         (SELECT COUNT(*) FROM backers WHERE project_id=projects.id GROUP BY backers.user_id) backers
         FROM projects INNER JOIN users ON projects.user_id=users.id
         WHERE projects.id={$id}"
     , [])->fetchObject();
 } else {
     $notFound = true;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: index.php?page=sign-in');
+    }
+
+    $input = [
+        ':user_id' => $_SESSION['user_id'],
+        ':project_id' => $detail->id,
+        ':donation' => $_POST['donation']
+    ];
+
+    $values = implode(",", array_keys($input));
+
+    $insert = runQuery("INSERT INTO backers (user_id,project_id,donation) VALUES($values)", $input);
+
+    if ($insert) {
+        $success = true;
+    }
 }
 
 ?>
@@ -92,10 +113,19 @@ if ($id != null || $id == '') {
         #detail .detail-content .description {
             font-size: 1.1em;
         }
+        #detail .success-message {
+            text-align: center;
+            color: #47B631;
+        }
     }
 </style>
 
 <div id="detail">
+    <?php if ($success): ?>
+        <div class="success-message">
+        Success to donate to this project.
+        </div>
+    <?php endif; ?>
     <div class="title">
         <div class="main-title">
             <?= $detail->title; ?>
@@ -129,10 +159,10 @@ if ($id != null || $id == '') {
                     </div>
                 </div>
                 <div class="item">
-                    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>?page=project-detail&project_id=<?= $detail->id; ?>" class="form">
+                    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>?page=project-detail&project_id=<?= $detail->id; ?>" class="form">
                         <div class="field">
                             <label for="">Backs (Rp)</label>
-                            <input type="number" placeholder="10000" name="donation">
+                            <input type="number" placeholder="10000" name="donation" required>
                         </div>
                         <button type="submit" class="button green big">Back This Project</button>
                     </form>

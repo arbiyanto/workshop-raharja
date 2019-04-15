@@ -1,6 +1,6 @@
 <?php
 $data = runQuery(
-    "SELECT projects.*, (SELECT COUNT(donation) FROM backers WHERE project_id=projects.id) donation FROM projects"
+    "SELECT projects.*, (SELECT SUM(donation) FROM backers WHERE project_id=projects.id) donation FROM projects"
 , [])->fetchAll(PDO::FETCH_CLASS);
 ?>
 <title>Homepage</title>
